@@ -4,6 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import styles from '@/pages/Files/Files.module.css';
 import { IFile } from '@/interfaces/fileInterface';
+import { backendBaseUrl } from '@/helpers/baseUrl';
 
 const Files = () => {
   const [files, setFiles] = useState<IFile[]>([]);
@@ -14,7 +15,7 @@ const Files = () => {
     setLoading(true);
 
     const fetchFiles = async () => {
-      const response = await fetch('http://localhost:3001/files');
+      const response = await fetch(`${backendBaseUrl}/files`);
       const data = await response.json();
 
       setFiles(data);
@@ -26,7 +27,7 @@ const Files = () => {
 
   const handleDownload = async (fileId: string, filename: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/files/${fileId}/download`);
+      const response = await fetch(`${backendBaseUrl}/files/${fileId}/download`);
 
       if (!response.ok) throw new Error('Erro no download');
 
@@ -48,7 +49,7 @@ const Files = () => {
 
   const handleDelete = async (id: string, messageId: string) => {
     try {
-      await fetch(`http://localhost:3001/files/${id}/${messageId}`, {
+      await fetch(`${backendBaseUrl}/files/${id}/${messageId}`, {
         method: 'DELETE',
       });
     } catch (error) {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from '@/pages/FileUpload/FileUpload.module.css';
+import { backendBaseUrl } from '@/helpers/baseUrl';
 
 const FileUpload = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const FileUpload = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:3001/files/upload', {
+      const response = await fetch(`${backendBaseUrl}/files/upload`, {
         method: 'POST',
         body: formData
       });
