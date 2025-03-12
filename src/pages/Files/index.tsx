@@ -4,7 +4,9 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import styles from '@/pages/Files/Files.module.css';
 import { IFile } from '@/interfaces/fileInterface';
-import { backendBaseUrl } from '@/helpers/baseUrl';
+import getFiles from '@/api/getFiles';
+import getFile from '@/api/getFile';
+import deleteFile from '@/api/deleteFile';
 
 const Files = () => {
   const [files, setFiles] = useState<IFile[]>([]);
@@ -15,10 +17,9 @@ const Files = () => {
     setLoading(true);
 
     const fetchFiles = async () => {
-      const response = await fetch(`${backendBaseUrl}/files`);
-      const data = await response.json();
+      const response = await getFiles();
 
-      setFiles(data);
+      setFiles(response);
       setLoading(false);
     };
 
@@ -26,37 +27,13 @@ const Files = () => {
   }, [isDelete]);
 
   const handleDownload = async (fileId: string, filename: string) => {
-    try {
-      const response = await fetch(`${backendBaseUrl}/files/${fileId}/download`);
-
-      if (!response.ok) throw new Error('Erro no download');
-
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(downloadUrl);
-
-    } catch (err) {
-      console.error('Falha no download:', err);
-    }
+    await getFile(fileId, filename);
   };
 
   const handleDelete = async (id: string, messageId: string) => {
-    try {
-      await fetch(`${backendBaseUrl}/files/${id}/${messageId}`, {
-        method: 'DELETE',
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsDelete(true);
-    }
+    await deleteFile(id, messageId);
+    
+    setIsDelete(true);
   };
 
   return (

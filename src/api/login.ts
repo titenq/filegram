@@ -16,6 +16,9 @@ const login = async (username: string, password: string) => {
 
     const data = await response.json();
 
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
     return data;
   } catch (error) {
     console.error(error);

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from '@/pages/FileUpload/FileUpload.module.css';
-import { backendBaseUrl } from '@/helpers/baseUrl';
+import uploadFile from '@/api/uploadFile';
 
 const FileUpload = () => {
   const navigate = useNavigate();
@@ -21,25 +21,10 @@ const FileUpload = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    try {
-      const response = await fetch(`${backendBaseUrl}/files/upload`, {
-        method: 'POST',
-        body: formData
-      });
+    await uploadFile(formData);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      await response.json();
-
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-
-      navigate('/arquivos');
-    }
+    setLoading(false);
+    navigate('/arquivos');
   };
 
   return (
