@@ -1,0 +1,21 @@
+.no_files {
+  margin: 2rem;
+}
+
+.container {
+  margin: 0.75rem;
+}
+
+.button_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.button_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.75rem;
+}

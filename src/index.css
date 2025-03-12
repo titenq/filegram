@@ -1,0 +1,59 @@
+:root {
+  --nav-color: #646cff;
+  --background-color: #212121;
+  --color: #ccc;
+  --white: #fff;
+}
+
+:root,
+html,
+body {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  color-scheme: light dark;
+  color: var(--white);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+a {
+  font-weight: 500;
+  color: var(--white);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--background-color);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--background-color);
+  color: var(--white);
+  cursor: pointer;
+  border: 2px solid var(--nav-color);
+  margin: 0.3rem 0.5rem;
+  transition: all 0.25s;
+}
+button:hover {
+  background-color: var(--nav-color);
+}

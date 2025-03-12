@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.file_input {
+  color: var(--white);
+  padding: 8px;
+  background: var(--nav-color);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid var(--color);
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.file_input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 0;
+}
+
+.file_input::before {
+  content: 'Escolher arquivo';
+  display: inline-block;
+  background: var(--nav-color);
+  border: none;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 700;
+  margin-right: 8px;
+}
